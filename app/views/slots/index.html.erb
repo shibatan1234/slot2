@@ -64,11 +64,12 @@
     var slot_2_stop = false;
     var startSlot_3 = {};
     var slot_3_stop = false;
-    $(".btn-start").click(function () { 
+    $(".btn-start").click(function () {
+      $('btn-start').prop('disabled', false);
         var index_1 = 0;
         startSlot_1 = setInterval(function(){
             if(slot_1_stop == true){
-                return ;
+                $('btn-start').prop('disabled', false) ;
             }
             index_1++;
             if (index_1 >= $('.reels').eq(0).children().length) {
@@ -85,7 +86,7 @@
         startSlot_2 = setInterval(function(){
           
             if(slot_1_stop == true){
-                return ;
+                $('btn-start').prop('disabled', false) ;
                 }
             
             index_2++;
@@ -101,7 +102,7 @@
         var index_3 = 0;
         startSlot_3 = setInterval(function(){
             if(slot_1_stop == true){
-                return ;
+                $('btn-start').prop('disabled', false) ;
             }
             index_3++;
             if (index_3 >= $(".reels").eq(2).children().length) {
@@ -113,13 +114,20 @@
               marginTop: mt + "px"
             });
         }, sec);
-    });    
+        
+    });
+        
     $(".btn-stop").click(function () {      
         var val = $(this).attr('data-val');
         if(val == 1) {
            clearInterval(startSlot_1);
            startSlot_1 = {};
+           clearInterval(startSlot_2);
+           startSlot_1 = {};
+           clearInterval(startSlot_3);
+           startSlot_1 = {};
            slot_1_stop = true;
+           $('btn-start').prop('disabled', false) ;
         }
         // if(val == 2) {
         //    clearInterval(startSlot_2);
