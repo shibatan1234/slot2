@@ -1,4 +1,6 @@
 <body>
+<audio src="example.mp3" autoplay></audio>
+<section class="fv-section">
   <div class="slot">
     <div class="slots">
       <ul class="reels">
@@ -11,6 +13,7 @@
         <li class="reel"><img src="https://i.gyazo.com/5d512bd323b3fb7bf941c5bdd864d205.png"></li>
         <li class="reel"><img src="https://i.gyazo.com/2e77d697e670b1c91b1c31dab346d09f.png"></li>
         <li class="reel"><img src="https://i.gyazo.com/5d512bd323b3fb7bf941c5bdd864d205.png"></li>
+        <li class="reel"><img src="https://i.gyazo.com/74eb289fd4b0dafd58bfd5fb71fc6510.png"></li>
       </ul>
     </div>  
     <div class="slots">
@@ -23,6 +26,8 @@
         <li class="reel"><img src="https://i.gyazo.com/bcbfdb78e57c6757bf71d72075757718.png"></li>
         <li class="reel"><img src="https://i.gyazo.com/bf2612003a93cfafb7389339f27c0ae0.png"></li>
         <li class="reel"><img src="https://i.gyazo.com/2d34bbfccec6c02b0a05dafd65daf559.png"></li>
+        <li class="reel"><img src="https://i.gyazo.com/bcbfdb78e57c6757bf71d72075757718.png"></li>
+        <li class="reel"><img src="https://image.news.livedoor.com/newsimage/stf/a/9/a9f2a_1106_0fa00111b1c1189177ea2d44b9b1959e.jpg"></li>
       </ul>
     </div>
     <div class="slots">
@@ -35,21 +40,23 @@
         <li class="reel"><img src="https://i.gyazo.com/2e77d697e670b1c91b1c31dab346d09f.png"></li>
         <li class="reel"><img src="https://i.gyazo.com/bcbfdb78e57c6757bf71d72075757718.png"></li>
         <li class="reel"><img src="https://i.gyazo.com/2d34bbfccec6c02b0a05dafd65daf559.png"></li>
+        <li class="reel"><img src="https://i.gyazo.com/bf2612003a93cfafb7389339f27c0ae0.png"></li>
         
       </ul>
     </div>
   </div>  
 </body>
+</section>
 <div style="clear: left;">
 </div>
 
-<button type="button" class="btn-start">start slot</button>
-<button type="button" class="btn-stop" data-val = "1">stop slot 1</button>
-<button type="button" class="btn-stop" data-val = "2">stop slot 2</button>
-<button type="button" class="btn-stop" data-val = "3">stop slot 3</button>
+<button type="button" class="btn-start">start</button>
+<button type="button" class="btn-stop" data-val = "1">stop</button>
+<%# <button type="button" class="btn-stop" data-val = "2">stop slot 2</button>
+<button type="button" class="btn-stop" data-val = "3">stop slot 3</button> %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-    var sec = 8;
+    var sec = 100;
 
     var startSlot_1 = {};
     var slot_1_stop = false;
@@ -68,7 +75,7 @@
               index_1 = 0;
             } 
           
-            var mt = 100.5 * (index_1) * -1;
+            var mt = 140.5 * (index_1) * -1;
             $('.reels').eq(0).animate({
               marginTop: mt + "px"
               
@@ -77,7 +84,7 @@
         var index_2 = 0;
         startSlot_2 = setInterval(function(){
           
-            if(slot_2_stop == true){
+            if(slot_1_stop == true){
                 return ;
                 }
             
@@ -86,14 +93,14 @@
               index_2 = 0;
             } 
           
-            var mt = 100.5 * (index_2) * -1;
+            var mt = 120.5 * (index_2) * -1;
             $('.reels').eq(1).animate({
               marginTop: mt + "px"
             });
         }, sec);
         var index_3 = 0;
         startSlot_3 = setInterval(function(){
-            if(slot_3_stop == true){
+            if(slot_1_stop == true){
                 return ;
             }
             index_3++;
@@ -101,7 +108,7 @@
               index_3 = 0;
             } 
           
-            var mt = 100.5 * (index_3) * -1;
+            var mt = 130.5 * (index_3) * -1;
             $('.reels').eq(2).animate({
               marginTop: mt + "px"
             });
@@ -114,15 +121,15 @@
            startSlot_1 = {};
            slot_1_stop = true;
         }
-        if(val == 2) {
-           clearInterval(startSlot_2);
-           startSlot_2 = {};
-           slot_2_stop = true;
-        }
-        if(val == 3) {
-           clearInterval(startSlot_3);
-           startSlot_3 = {};
-           slot_3_stop = true;
-        }
+        // if(val == 2) {
+        //    clearInterval(startSlot_2);
+        //    startSlot_2 = {};
+        //    slot_2_stop = true;
+        // }
+        // if(val == 3) {
+        //    clearInterval(startSlot_3);
+        //    startSlot_3 = {};
+        //    slot_3_stop = true;
+        // }
     });
 </script>  
