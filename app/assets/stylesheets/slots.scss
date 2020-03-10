@@ -5,7 +5,12 @@ body{
   margin: 0 auto; 
   position: relative;
   padding: 0px 0px 0px 0px;
+  
+}.BGM{
+  a{text-decoration: none;}
+  
 }
+
 
 .slot {
   padding: 0px;
@@ -21,6 +26,8 @@ body{
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  text-decoration: none;
+  
 }
 .slots {
   float: left;

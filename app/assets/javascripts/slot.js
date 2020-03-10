@@ -61,13 +61,16 @@ $(".btn-stop").click(function () {
     var val = $(this).attr('data-val');
     if(val == 1) {
        clearInterval(startSlot_1);
-       startSlot_1 = {};
        clearInterval(startSlot_2);
-       startSlot_1 = {};
        clearInterval(startSlot_3);
-       startSlot_1 = {};
+       newFunction(startSlot_1);
        slot_1_stop = true;
        $('btn-stop').prop('disabled', false) ;
     }
   });
 });
+
+function newFunction(startSlot_1) {
+  startSlot_1 = {};
+  return startSlot_1;
+}
