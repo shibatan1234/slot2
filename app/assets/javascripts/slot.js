@@ -41,7 +41,7 @@
        * スタートボタンのクリックイベント
        */
       start: function () {
-          for (var index = 0; index<3; index++) {
+          for (var index = 0; index<15; index++) {
               Slot.animation(index);
           }
       },
@@ -62,7 +62,7 @@
           slotFrameHeight    = $('.slot-frame').outerHeight();
           slotReelsHeight    = $('.reels').eq(0).outerHeight();
           slotReelItemHeight = $('.reel').eq(0).outerHeight();
-          slotReelStart      = 5 - 2;
+          slotReelStart      = 25 - 10;
           // リールの上下は、半分だけ表示させるための位置調整
           slotReelStartHeight = -slotReelsHeight;
           slotReelStartHeight = slotReelStartHeight + slotFrameHeight + ((slotReelItemHeight * 3 / 2) - (slotFrameHeight / 2));
@@ -76,7 +76,7 @@
        */
       animation: function (index) {
           console.log('アニメーション', '開始', index);
-          if (reelCounts[index] >= 5) {
+          if (reelCounts[index] >= 15) {
               reelCounts[index] = 0;
           }
 

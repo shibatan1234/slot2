@@ -8,7 +8,7 @@ ul {
 }
 .slot {
   width: 90%;
-  height: 300px;
+  height: 390px;
   overflow: hidden;
   margin: auto;
   border : solid 1px #333 ;
@@ -27,36 +27,38 @@ ul {
 }
 .slot-frame {
   background-color:whitesmoke;
-  height: 300px;
+  height: 390px;
   position: relative;
   overflow: hidden;
   border : solid 1px #333 ;
 }
 .reels {
-  height:1250px;
+  height:3050px;
   width: 31%;
   position: absolute;
 }
 .reels:nth-child(1) {
-  left: 0;
+  left: 2%;
 }
 .reels:nth-child(2) {
   left: 33%;
 }
 .reels:nth-child(3) {
-  right: 0;
+  right: 2%;
 }
 .reel {
-  height: 180px;
+  height: 170px;
+  bottom: 30px;
 }
 .reel img {
   display: block;
+  height: 82%;
   width: 70%;
   margin: auto;
 }
 
 .btn-start{
-  margin:40px 20px 50px 50px;
+  margin:0px 20px 50px 50px;
   background-color: red;
 }
 
