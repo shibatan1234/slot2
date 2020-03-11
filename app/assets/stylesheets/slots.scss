@@ -1,24 +1,65 @@
-
-
-
-body{
-  margin: 0 auto; 
+body {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+ul {
+  list-style: none;
+}
+.slot {
+  width: 90%;
+  height: 300px;
+  overflow: hidden;
+  margin: auto;
+  border : solid 1px #333 ;
+}
+.slot-frame {
+  background-color:whitesmoke;
+  height: 300px;
   position: relative;
-  padding: 0px 0px 0px 0px;
-  
-}.BGM{
+  overflow: hidden;
+  border : solid 1px #333 ;
+}
+.reels {
+  height:1250px;
+  width: 31%;
+  position: absolute;
+}
+.reels:nth-child(1) {
+  left: 0;
+}
+.reels:nth-child(2) {
+  left: 33%;
+}
+.reels:nth-child(3) {
+  right: 0;
+}
+.reel {
+  height: 180px;
+}
+.reel img {
+  display: block;
+  width: 70%;
+  margin: auto;
+}
+
+.btn-start{
+  background-color: red;
+}
+
+.btn-stop{
+  background-color: yellow;
+  width: 120px;
+}
+
+.BGM{
   a{text-decoration: none;}
   
 }
 
 
-.slot {
-  padding: 0px;
-  margin: 0px;
-}
-
 .fv-section {
-  height: 600px;
+  height: 800px;
   background-image: url(https://i.gyazo.com/74f1b0bc2ffefb3be5d5f72c494f7d5d.png);
   background-size: cover;
   background-position: center;
@@ -28,60 +69,4 @@ body{
   flex-direction: column;
   text-decoration: none;
   
-}
-.slots {
-  float: left;
-  overflow: hidden;
-  height: 150px;
-  width: 200px;
-  border: solid 1px #333 ;
-  margin: 5px;
-  padding: 0;
-}
-.reels {
-  height: 10px;
-  margin: 0px 5px 0px 0px;
-  padding: 0;
-}
-.reel {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  bottom: 20px;
-}
-
-.reel img {
-  height: 120px;
-  width: 150px;
-  margin-left: 20px;
-  margin-top: 30px;
-}
-
-.btn-start{
-  background-color: gold;
-  border-radius: 25px;
-  margin: 50px 80px;
-  padding: 10px 10px;
-  height: 80px;
-  width: 50px;
-}
-.btn-start:active {
-  -webkit-transform: translateY(10px);
-  transform: translateY(10px);
-  background-color:red;
-  border-bottom: none;
-}
-
-.btn-stop{
-  background-color:yellow;
-  border-radius: 10px;
-  margin: 30px 10px 10px 30px;
-  height: 30px;
-  width: 300px;
-}
-.btn-stop:active {
-  -webkit-transform: translateY(10px);
-  transform: translateY(10px);
-  background-color: red;
-  border-bottom: none;
 }

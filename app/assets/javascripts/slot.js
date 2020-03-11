@@ -1,76 +1,159 @@
-$(function() {
-    var sec = 100;
+(function (global) {
+  "use strict";
 
-    var startSlot_1 = {};
-    var slot_1_stop = false;
-    var startSlot_2 = {};
-    var startSlot_3 = {};
-    
+  /*
+   * スロットのリール回転速度(実行毎秒数)
+   */
+  var sec = 100;
 
-$(".btn-start").click(function () {
-    var index_1 = 0;
-      startSlot_1 = setInterval(function(){
-          if(slot_1_stop == true){
-              $('btn-start').prop('disabled', false) ;
+  /*
+   * スロットのリール情報
+   * ・スロットのリールelement
+   * ・スロットのリール停止フラグ
+   * ・スロットのリール回転数
+   */
+  var $reels       = [],
+      stopReelFlag = [],
+      reelCounts   = [];
+
+  /*
+   * 位置情報
+   */
+  var slotFrameHeight     = 0,
+      slotReelsHeight     = 0,
+      slotReelItemHeight  = 0,
+      slotReelStart       = 0,
+      slotReelStartHeight = 0;
+
+  /**
+   * スロット
+   */
+  var Slot = {
+      /**
+       * 初期化処理
+       */
+      init: function init() {
+          $reels[0] = $reels[1] = $reels[2] = null;
+          stopReelFlag[0] = stopReelFlag[1] = stopReelFlag[2] = false;
+          reelCounts[0] = reelCounts[1] = reelCounts[2] = 0;
+      },
+      /**
+       * スタートボタンのクリックイベント
+       */
+      start: function () {
+          for (var index = 0; index<3; index++) {
+              Slot.animation(index);
           }
-          index_1++;
-          if (index_1 >= $('.reels').eq(0).children().length) {
-            index_1 = 0;
-          } 
-        
-          var mt = 120.5 * (index_1) * -1;
-          $('.reels').eq(0).animate({
-            marginTop: mt + "px"
-            
+      },
+      /**
+       * ストップボタンのクリックイベント
+       */
+      stop: function (index) {
+          stopReelFlag[index] = true;
+          if (stopReelFlag[0] && stopReelFlag[1] && stopReelFlag[2]) {
+              // 全リール停止したらリセットボタンを押下できるようにする
+              $('.btn-reset').attr('disabled', false);
+          }
+      },
+      /**
+       * 位置情報の初期化処理
+       */
+      resetLocationInfo: function () {
+          slotFrameHeight    = $('.slot-frame').outerHeight();
+          slotReelsHeight    = $('.reels').eq(0).outerHeight();
+          slotReelItemHeight = $('.reel').eq(0).outerHeight();
+          slotReelStart      = 5 - 2;
+          // リールの上下は、半分だけ表示させるための位置調整
+          slotReelStartHeight = -slotReelsHeight;
+          slotReelStartHeight = slotReelStartHeight + slotFrameHeight + ((slotReelItemHeight * 3 / 2) - (slotFrameHeight / 2));
+
+          $('.reels').css({
+              'top':slotReelStartHeight 
           });
-      }, sec);
-      var index_2 = 0;
-      startSlot_2 = setInterval(function(){
-        
-          if(slot_1_stop == true){
-          $('btn-start').prop('disabled', false) ;
+      },
+      /**
+       * スロットの回転アニメーション
+       */
+      animation: function (index) {
+          console.log('アニメーション', '開始', index);
+          if (reelCounts[index] >= 5) {
+              reelCounts[index] = 0;
+          }
+
+          console.log('slotReelStartHeight', slotReelStartHeight);
+          console.log('reelCounts[index]', reelCounts[index]);
+          console.log('slotReelsHeight', slotReelsHeight);
+          console.log('top', slotReelStartHeight + (reelCounts[index] * slotReelItemHeight));
+
+          $('.reels').eq(index).animate({
+              'top': slotReelStartHeight + (reelCounts[index] * slotReelItemHeight)
+          }, {
+              duration: sec,
+              easing: 'linear',
+              complete: function () {
+                  console.log('アニメーション', '完了', index, reelCounts[index]);
+                  if (stopReelFlag[index]) {
+                      console.log('アニメーション', 'ストップ', index, reelCounts[index]);
+                      return ;
+                  }
+                  // 移動階数をカウント
+                  reelCounts[index]++;
+                  // スロット回転のアニメーションを実行する
+                  Slot.animation(index);
               }
-          
-          index_2++;
-          if (index_2 >= $('.reels').eq(1).children().length) {
-            index_2 = 0;
-          } 
-        
-          var mt = 120.5 * (index_2) * -1;
-          $('.reels').eq(1).animate({
-            marginTop: mt + "px"
           });
-      }, sec);
-      var index_3 = 0;
-      startSlot_3 = setInterval(function(){
-          if(slot_1_stop == true){
-              $('btn-start').prop('disabled', false) ;
-          }
-          index_3++;
-          if (index_3 >= $(".reels").eq(2).children().length) {
-            index_3 = 0;
-          } 
-        
-          var mt = 130.5 * (index_3) * -1;
-          $('.reels').eq(2).animate({
-            marginTop: mt + "px"
-          });
-      }, sec);
-      });
-$(".btn-stop").click(function () {      
-    var val = $(this).attr('data-val');
-    if(val == 1) {
-       clearInterval(startSlot_1);
-       clearInterval(startSlot_2);
-       clearInterval(startSlot_3);
-       newFunction(startSlot_1);
-       slot_1_stop = true;
-       $('btn-stop').prop('disabled', false) ;
-    }
-  });
-});
+      },
+  };
 
-function newFunction(startSlot_1) {
-  startSlot_1 = {};
-  return startSlot_1;
-}
+  global.Slot = Slot;
+
+})((this || 0).self || global);
+
+/**
+* 読み込み後
+*/
+$(document).ready(function () {
+
+  /*
+   * スロットの初期化処理を実行
+   */
+  Slot.init();
+  Slot.resetLocationInfo();
+
+  /**
+   * スタートボタンのクリックイベント
+   */
+  $('.btn-start').click(function () {
+      // スタートボタンを押せないようにする
+      $(this).attr('disabled', true);
+      // スロットの回転を開始
+      Slot.start();
+      // ストップボタンを押せるようにする
+      $('.btn-stop').attr('disabled', false);
+  });
+
+  /**
+   * リセットボタンのクリックイベント
+   */
+  $('.btn-reset').click(function () {
+      // リセットボタンを押せないようにする
+      $(this).attr('disabled', true);
+      // スタートボタンを押せるようにする
+      $('.btn-start').attr('disabled', false);
+      // ストップボタンを押せないようにする
+      $('.btn-stop').attr('disabled', true);
+      // スロットのリール情報を初期化
+      Slot.init();
+  });
+
+  /**
+   * ストップボタンのクリックイベント
+   */
+  $('.btn-stop').click(function () {
+      // ストップボタンを押せないようにする
+      $(this).attr('disabled', true);
+      // レールの回転を停止
+      Slot.stop($(this).attr('data-val'));
+  });
+
+});
