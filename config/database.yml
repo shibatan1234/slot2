@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: slot2_production
-  username: slot2
-  password: <%= ENV['SLOT2_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
