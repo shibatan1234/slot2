@@ -62,7 +62,7 @@
           slotFrameHeight    = $('.slot-frame').outerHeight();
           slotReelsHeight    = $('.reels').eq(0).outerHeight();
           slotReelItemHeight = $('.reel').eq(0).outerHeight();
-          slotReelStart      = 25 - 10;
+          slotReelStart      = 15;
           // リールの上下は、半分だけ表示させるための位置調整
           slotReelStartHeight = -slotReelsHeight;
           slotReelStartHeight = slotReelStartHeight + slotFrameHeight + ((slotReelItemHeight * 3 / 2) - (slotFrameHeight / 2));
