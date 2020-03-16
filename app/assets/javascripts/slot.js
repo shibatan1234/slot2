@@ -37,6 +37,9 @@
           stopReelFlag[0] = stopReelFlag[1] = stopReelFlag[2] = false;
           reelCounts[0] = reelCounts[1] = reelCounts[2] = 0;
       },
+      check777() { // 全部7だったらtrue
+        return this.img.src.indexOf('k1.jpg') !== -1 && reels[1].img.src.indexOf('k1.jpg') !== -1 && reels[2].img.src.indexOf('k1.jpg') !== -1;
+      },
       /**
        * スタートボタンのクリックイベント
        */
@@ -50,11 +53,14 @@
        */
       stop: function (index) {
           stopReelFlag[index] = true;
+           
           if (stopReelFlag[0] && stopReelFlag[1] && stopReelFlag[2]) {
               // 全リール停止したらリセットボタンを押下できるようにする
               $('.btn-reset').attr('disabled', false);
+              $('.btn-slot').attr('disabled', false);
           }
       },
+      
       /**
        * 位置情報の初期化処理
        */
@@ -130,6 +136,7 @@ $(document).ready(function () {
       Slot.start();
       // ストップボタンを押せるようにする
       $('.btn-stop').attr('disabled', false);
+      $('.btn-slot').attr('disabled', false);
   });
 
   /**
@@ -145,7 +152,13 @@ $(document).ready(function () {
       // スロットのリール情報を初期化
       Slot.init();
   });
-
+  $('.btn-slot').click(function () {
+    $(this).attr('disabled', true);
+    $('.btn-start').attr('disabled', false);
+    $('.btn-stop').attr('disabled', true);
+    // スタートボタンを押せないようにする
+    alert("良いことあるかも");
+  })
   /**
    * ストップボタンのクリックイベント
    */
@@ -155,5 +168,5 @@ $(document).ready(function () {
       // レールの回転を停止
       Slot.stop($(this).attr('data-val'));
   });
-
+  
 });
