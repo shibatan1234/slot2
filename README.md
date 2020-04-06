@@ -12,5 +12,5 @@
 　
 ## 💬 Usage
 
-`$ git clone https://github.com/aocattleya/Ramen-Timer.git`  <br><br>
+`$ https://github.com/shibatan1234/slot2.git`  <br><br>
 　
