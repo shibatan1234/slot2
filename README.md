@@ -10,7 +10,3 @@
 
 ### https://sllott.herokuapp.com/**  
 　
-## 💬 Usage
-
-`$ https://github.com/shibatan1234/slot2.git`  <br><br>
-　
